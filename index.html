@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>纯原生js日期时间选择 by：羯瑞</title>
+	
+	<style>
+		*{margin:0;padding:0;}
+		h1 {background-color: #19b5ee;color: #fff;font-size: 25px;text-align: center;padding: 10px;}
+		p{margin:5px 5px 0;}
+		input,#demo1{width: 80%;height: 40px;font-size: 18px;border: 1px solid #19b5ee;border-radius: 5px;margin: 20px 5% 0 5%;padding: 5px; ime-mode:disabled;}
+	</style>
+	<link rel="stylesheet" href="./src/date.selection.css">
+	<script src="./src/date.selection.js"></script>
+</head>
+<body>
+	<h1>纯原生js日期时间选择 by：羯瑞</h1>
+	<p>注：1940-2-8至2018-12-31</p>
+	<p>data-type</p>
+	<p>默认:1; 农历_1, 公历_0</p>
+	<p>data-date</p>
+	<p>默认:当前时间；例：2017-02-09</p>
+	<p>data-hour</p>
+	<p>默认:未知；例：5</p>
+	<p>data-input-id</p>
+	<p>默认:空；需要赋值的input id</p>
+	<p>data-input-hour-id</p>
+	<p>默认:空；需要赋值的input 时辰 id;默认以这个参数为判定</p>
+	<div>
+		<div id="demo1" type="text" data-input-id="date" name="input_date" placeholder="日期选择特效" readonly="readonly" /></div>
+		<input type="hidden" id="date" name="date">
+	</div>
+
+	<div style="margin:10px 0 0">
+		<input id="demo2" type="text" data-input-id="date1" data-input-hour-id="hour1" name="input_date" data-hour="7" placeholder="日期时辰选择特效" readonly="readonly"/>
+		<input type="hidden" id="date1" name="date">
+		<input type="hidden" id="hour1" name="hour">
+	</div>
+
+	<script>
+		var calendar = new dateSelection().init('#demo1');
+		var calendar = new dateSelection().init('#demo2');
+	</script>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+	<p>填充高度</p>
+</body>
+</html>
