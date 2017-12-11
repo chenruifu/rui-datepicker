@@ -1,5 +1,5 @@
 /*
- * dateSelection 农历公历-日历控件
+ * lCalendar 农历公历-日历控件
  * 
  * 作者：羯瑞
  * 
@@ -17,7 +17,7 @@
 	<p>data-input-id</p>
 	<p>默认:空；需要赋值的input id</p>
  */
-window.dateSelection = (function() {
+window.ruiNongliPicker = (function() {
 	if (!("classList" in document.documentElement)) {
         Object.defineProperty(HTMLElement.prototype, 'classList', {
             get: function() {
@@ -59,7 +59,7 @@ window.dateSelection = (function() {
             }
         });
     }
-	var MobileCalendar = function() {
+	var datePicker = function() {
 		this.gearDate;
 		this.minY = 1940;
 		this.minM = 1,
@@ -69,7 +69,7 @@ window.dateSelection = (function() {
 		this.maxD = 31,
 		this.type = 1 //0公历，1农历
 	}
-	MobileCalendar.prototype = {
+	datePicker.prototype = {
 		init: function(id) {
 			this.trigger = document.querySelector(id);
 			this.bindEvent('date');
@@ -172,7 +172,6 @@ window.dateSelection = (function() {
 		    ];
 			//呼出日期插件
 			function popupDate(e) {
-				console.log(111);
 				//阻止获得焦点
 				document.activeElement.blur();
 				_self.gearDate = document.createElement("div");
@@ -294,7 +293,6 @@ window.dateSelection = (function() {
 					date_dd.onmousewheel=gearMouseRolling;
 					date_hh?date_hh.onmousewheel=gearMouseRolling:'';
 			    }
-			    return false;
 			}
 			// 公历农历选择
 			function convertTap(type){
@@ -385,7 +383,14 @@ window.dateSelection = (function() {
 					var date_mm=dateArr.mm+1;
 					var date_dd=dateArr.dd+1;
 					var objDate=calendarConvert(0,date_yy,date_mm,date_dd);//返回转换对象
-					if(objDate.mm<0) objDate.mm=-objDate.mm+1;//返回的负数为 闰年
+					var isRm=LunarCal[objDate.yy - _self.minY].Intercalation?LunarCal[objDate.yy - _self.minY].Intercalation:0;//判断是不是闰年
+					if(objDate.mm<0) {
+						objDate.mm=-objDate.mm+1;//返回的负数为 闰年
+					}else{
+						//闰年月份+1重复选择，位置才正确
+						if(isRm && (objDate.mm-1)>=isRm) objDate.mm=objDate.mm+1;
+					}
+					//console.log(objDate.yy - _self.minY+'_'+isRm+'_'+objDate.mm);
 					_self.gearDate.querySelector(".date_yy").setAttribute("val", objDate.yy - _self.minY);
 					_self.gearDate.querySelector(".date_mm").setAttribute("val", objDate.mm-1);
 					_self.gearDate.querySelector(".date_dd").setAttribute("val", objDate.dd-1);
@@ -1201,14 +1206,33 @@ window.dateSelection = (function() {
 					}
 				}
 			}
-			_self.trigger.addEventListener('click', {
-				"date": popupDate
-			}[type],false);	
-			_self.trigger.onfocus=function(){
-				console.log('onfocus');
-				this.blur();
+			// 判断移动端
+			var isMove = false;
+        	var startTime = 0;
+			if('ontouchstart' in window){
+				// 判断移动的点击事件tap操作
+				_self.trigger.addEventListener('touchstart',function(e){
+		            startTime = Date.now();
+		        });
+		        _self.trigger.addEventListener('touchmove',function(e){
+		            isMove = true;
+		        });
+		        _self.trigger.addEventListener('touchend',function(e){
+		            /*判读  是否满足tap 的要求  一般要求tap的响应时间150*/
+		            if(!isMove && (Date.now()-startTime) < 150){
+		                e.preventDefault();
+						popupDate();
+		            }
+		            /*重置 参数*/
+		            isMove = false;
+		            startTime = 0;
+		        });
+			}else{
+				_self.trigger.addEventListener('click',function(){
+					popupDate();
+				})
 			}
 		}
 	}
-	return MobileCalendar;
+	return datePicker;
 })()
