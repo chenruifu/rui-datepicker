@@ -1,5 +1,5 @@
 # rui-libs
-前端插件库
+羯瑞前端插件库
 
 ## 农历日期选择(rui-nongli-picker)
 * 原生JS
