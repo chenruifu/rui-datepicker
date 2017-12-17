@@ -1,10 +1,13 @@
-# rui-libs
-羯瑞前端插件库
+# 前言
+羯瑞-前端插件库，整理了一些动作中用到的一些插件
 
-## 农历日期选择(rui-nongli-picker)
-* 原生JS
+## 公农历日期选择器(rui-datepicker)
+![20171217124446](http://oy1qrdqm7.bkt.clouddn.com/20171217124446.png)
+* 兼容IE9+、Chrome、Firefox、Opera、Safari；PC+移动端通用
+* 原生JS + CSS3 + h5新特性
 * 支持农历、公历切换
 * 支持设置选择时辰
 
+## 图片
 
 

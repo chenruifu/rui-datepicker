@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>rui-datepicker公农历日期选择器</title>
+	<style>
+		h1,h2,h3,h4,h5,h6,body,p{margin:0;}
+		body{background: #444;font-size: 14px/1.2;}
+		a,body{color: #fc0;}
+		a{text-decoration: none;}
+		header{background: #fc0;color: #333;padding:10px;text-align: center;}
+		header p{margin:10px 0;}
+		header a{display: inline-block;height: 34px;padding:0 16px;line-height: 32px;background: #333;color: #fc0;border-radius: 5px;}
+		.date_input{text-align: center;margin:16px 0 0;}
+		.date_input p{padding:0 0 8px;font-size: 1.4em}
+		.date_input input{width: 80%;height: 50px;font-size: 18px;border: 1px solid #444;border-radius: 5px;padding: 5px;margin:0 10%;box-sizing: border-box;}
+	</style>
+	<link rel="stylesheet" href="./rui-datepicker.css">
+	<script src="./rui-datepicker.js"></script>
+</head>
+<body>
+	<header>
+		<h1>公农历日期选择器</h1>
+		<p>@author：羯瑞</p>
+		<a href="https://github.com/chenruifu/libs">GitHub</a>
+	</header>
+	<div class="date_input">
+		<p>不带时辰</p>
+		<input id="demo1" type="text" data-toid-date="date" name="input_date" placeholder="日期选择不带时辰" readonly="readonly" data-type="1" /></input>
+		<input type="hidden" id="date" name="date">
+	</div>
+	<div class="date_input">
+		<p>带时辰</p>
+		<input id="demo2" type="text" data-toid-date="date1" data-toid-hour="hour1" name="input_date" data-hour="7" placeholder="日期选择带时辰" readonly="readonly"/>
+		<input type="hidden" id="date1" name="date">
+		<input type="hidden" id="hour1" name="hour">
+	</div>
+	<script>
+		var date1 = new ruiDatepicker().init('#demo1');
+		var date2 = new ruiDatepicker().init('#demo2');
+	</script>
+</body>
+</html>
