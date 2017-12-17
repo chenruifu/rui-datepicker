@@ -6,10 +6,57 @@ rui-datepicker是一款支持农历公历选择的原生插件。PC和移动端�
 
 
 > 使用方法
-
-在页面中因日
+~~~html
+<!-- 在页面中引入js和css文件 -->
+<link rel="stylesheet" href="./rui-datepicker.css">
+<script src="./rui-datepicker.js"></script>
 ~~~
 
+> HTML结构及调用
+~~~html
+<!-- 不带时辰 -->
+<input id="demo1" type="text" data-toid-date="date" placeholder="日期选择不带时辰"  data-type="1" readonly="readonly" /></input>
+<input type="hidden" id="date" name="date">
+
+<!-- 带时辰 -->
+<input id="demo2" type="text" data-toid-date="date1" data-toid-hour="hour1" data-hour="7" placeholder="日期选择带时辰" readonly="readonly"/>
+<input type="hidden" id="date1" name="date">
+<input type="hidden" id="hour1" name="hour">
+
+<!-- js -->
+<script>
+    var date1 = new ruiDatepicker().init('#demo1');
+    var date2 = new ruiDatepicker().init('#demo2');
+</script>
+~~~
+<p>注：1940-2-8至2018-12-31</p>
+	<p>data-type</p>
+	<p>默认:1; 农历_1, 公历_0</p>
+	<p>data-date</p>
+	<p>默认:当前时间；例：2017-02-09</p>
+	<p>data-hour</p>
+	<p>默认:未知；例：5</p>
+	<p>data-input-id</p>
+	<p>默认:空；需要赋值的input id</p>
+	<p>data-input-hour-id</p>
+	<p>默认:空；需要赋值的input 时辰 id;默认以这个参数为判定</p>
+
+
+> 参数配置
+* 参数配置全部在HTML中，日期区间默认写死：1940-2-8至2018-12-31
+~~~js
+//起始农历&公历：默认公历
+data-type="0"   公历
+data-type="1"   农历
+//起始日期(公历)：默认当前日期
+data-date="2016-12-31"  
+//确认日期后赋值隐藏表单日期ID(公历)
+data-toid-date="inputDate"
+
+//确认日期后赋值隐藏表单时辰ID(公历)
+data-toid-hour="inputHour"
+//起始时辰：默认0未知，该参数作用居于data-toid-hour为真
+data-hour="3"        
 ~~~
 
 
