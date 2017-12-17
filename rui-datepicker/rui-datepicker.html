@@ -11,36 +11,37 @@
 		p{margin:5px 5px 0;}
 		input,#demo1{width: 80%;height: 40px;font-size: 18px;border: 1px solid #19b5ee;border-radius: 5px;margin: 20px 5% 0 5%;padding: 5px; ime-mode:disabled;}
 	</style>
-	<link rel="stylesheet" href="../src/rui-nongli-picker.css">
-	<script src="../src/rui-nongli-picker.js"></script>
+	<link rel="stylesheet" href="../src/rui-datepicker.css">
+	<script src="../src/rui-datepicker.js"></script>
 </head>
 <body>
 	<h1>纯原生js日期时间选择 by：羯瑞</h1>
 	<p>注：1940-2-8至2018-12-31</p>
 	<p>data-type</p>
-	<p>默认:1; 农历_1, 公历_0</p>
+	<p>默认:0; 农历_1, 公历_0</p>
 	<p>data-date</p>
 	<p>默认:当前时间；例：2017-02-09</p>
 	<p>data-hour</p>
 	<p>默认:未知；例：5</p>
-	<p>data-input-id</p>
+	<p>data-toid-date</p>
 	<p>默认:空；需要赋值的input id</p>
-	<p>data-input-hour-id</p>
+	<p>data-toid-hour</p>
 	<p>默认:空；需要赋值的input 时辰 id;默认以这个参数为判定</p>
 	<div>
-		<input id="demo1" type="text" data-input-id="date" name="input_date" placeholder="日期选择特效" readonly="readonly" data-type="1" /></input>
+		<input id="demo1" type="text" data-toid-date="date" name="input_date" placeholder="日期选择" readonly="readonly" data-type="1" /></input>
 		<input type="hidden" id="date" name="date">
 	</div>
 
 	<div style="margin:10px 0 0">
-		<input id="demo2" type="text" data-input-id="date1" data-input-hour-id="hour1" name="input_date" data-hour="7" placeholder="日期时辰选择特效" readonly="readonly"/>
+		<input id="demo2" type="text" data-toid-date="date1" data-toid-hour="hour1" name="input_date" data-hour="7" placeholder="日期时辰选择" readonly="readonly"/>
 		<input type="hidden" id="date1" name="date">
 		<input type="hidden" id="hour1" name="hour">
 	</div>
 
 	<script>
-		var calendar = new ruiNongliPicker().init('#demo1');
-		var calendar = new ruiNongliPicker().init('#demo2');
+		var calendar = new ruiDatepicker().init('#demo1');
+		var calendar = new ruiDatepicker().init('#demo2');
+		console.log(calendar);
 	</script>
 	<p>填充高度</p>
 	<p>填充高度</p>

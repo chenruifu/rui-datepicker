@@ -1,23 +1,12 @@
 /*
- * lCalendar 农历公历-日历控件
- * 
+ * ruiDatePicker 农历公历-日历控件
+ * 版本：1.0
  * 作者：羯瑞
- * 
  * 邮箱：410232098@qq.com
- * 
- * Copyright 2016
- * 
  * 创建于：2016-12-31
- * 
- * <p>注：1940-2-8至2018-12-31</p>
-	<p>data-type</p>
-	<p>默认:1; 农历_1, 公历_0</p>
-	<p>data-date</p>
-	<p>默认:当前时间；例：2017-02-09</p>
-	<p>data-input-id</p>
-	<p>默认:空；需要赋值的input id</p>
  */
-window.ruiNongliPicker = (function() {
+window.ruiDatepicker = (function() {
+	// 兼容IE-classList处理
 	if (!("classList" in document.documentElement)) {
         Object.defineProperty(HTMLElement.prototype, 'classList', {
             get: function() {
@@ -64,7 +53,7 @@ window.ruiNongliPicker = (function() {
 		this.minY = 1940;
 		this.minM = 1,
 		this.minD = 1,
-		this.maxY = 2018,
+		this.maxY = 2019,
 		this.maxM = 12,
 		this.maxD = 31,
 		this.type = 1 //0公历，1农历
@@ -177,7 +166,7 @@ window.ruiNongliPicker = (function() {
 				_self.gearDate = document.createElement("div");
 				_self.gearDate.className = "gearDate";
 				// 判断是否启用时辰
-				if(_self.trigger.getAttribute('data-input-hour-id')){
+				if(_self.trigger.getAttribute('data-toid-hour')){
 					_self.gearDate.innerHTML = '<div class="date_ctrl slideInUp">' +
 						'<div class="date_info_box lcalendar_info">' +
 						'</div>' +
@@ -1111,8 +1100,8 @@ window.ruiNongliPicker = (function() {
 				var d=getCalendarDate();
 				_self.trigger.setAttribute('data-date',d.yy+ "-" + d.mm + "-" +d.dd);
 				_self.trigger.setAttribute('data-hour',d.hh);
-				var inputId=_self.trigger.getAttribute('data-input-id');
-				var hourId=_self.trigger.getAttribute('data-input-hour-id');
+				var inputId=_self.trigger.getAttribute('data-toid-date');
+				var hourId=_self.trigger.getAttribute('data-toid-hour');
 				if(inputId) document.getElementById(inputId).value=d.yy+ "-" + d.mm + "-" +d.dd;
 				if(hourId) document.getElementById(hourId).value=d.hh<0?'':d.hh;
 				var hourStr='';
