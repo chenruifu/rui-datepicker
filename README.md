@@ -1,5 +1,5 @@
 # 前言
-羯瑞-前端插件库，整理了一些动作中用到的一些插件
+羯瑞-前端插件库，整理了一些工作中用到的一些插件
 
 ## 公农历日期选择器(rui-datepicker) [演示](https://chenruifu.github.io/rui-datepicker/)
 ![20171217124446](http://oy1qrdqm7.bkt.clouddn.com/20171217124446.png)
