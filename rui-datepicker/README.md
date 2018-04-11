@@ -23,10 +23,16 @@ rui-datepicker是一款支持农历公历选择的原生插件。PC和移动端�
 <input type="hidden" id="date1" name="date">
 <input type="hidden" id="hour1" name="hour">
 
+<!-- 带时辰(不提示确认)-->
+<input id="demo3" type="text" data-confirm="false" data-toid-date="date1" data-toid-hour="hour1" data-hour="7" placeholder="日期选择带时辰" readonly="readonly"/>
+<input type="hidden" id="date1" name="date">
+<input type="hidden" id="hour1" name="hour">
+
 <!-- js -->
 <script>
     var date1 = new ruiDatepicker().init('#demo1');
     var date2 = new ruiDatepicker().init('#demo2');
+    var date3 = new ruiDatepicker().init('#demo3');
 </script>
 ~~~
 
@@ -46,7 +52,10 @@ data-toid-date="inputDate"
 //确认日期后赋值隐藏表单时辰ID(公历)
 data-toid-hour="inputHour"
 //起始时辰：默认0未知，该参数作用居于data-toid-hour为真
-data-hour="3"        
+data-hour="3"  
+
+//点击完成后，不再显示确认框（默认显示）
+data-confirm="false"      
 ~~~
 
 

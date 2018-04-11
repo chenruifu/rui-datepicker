@@ -1,5 +1,5 @@
 .gearDate {font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 10px;background-color: rgba(0, 0, 0, 0.2);display: block;position: absolute;position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 9900;overflow: hidden;-webkit-animation-fill-mode: both;animation-fill-mode: both;-webkit-transform: translateZ(0);}
-.date_ctrl {vertical-align: middle;background-color: #F0F0F0;border:1px solid #a5a5a5;border-radius: 5px;color: #363837;margin: 0;height: auto;width: 90%;max-width: 600px;position: absolute;left: 0;right:0;top: 12%;z-index: 9902;overflow: hidden;margin:0 auto;-webkit-transform: translateY(0);transform: translateY(0);-ms-transform: translateY(0);-moz-transform: translateY(0);}
+.date_ctrl {vertical-align: middle;background-color: #F0F0F0;box-shadow: 0 0 2px rgba(0,0,0,.4);border-radius: 5px;color: #363837;margin: 0;height: auto;width: 90%;max-width: 600px;position: absolute;left: 0;right:0;top: 12%;z-index: 9902;overflow: hidden;margin:0 auto;-webkit-transform: translateY(0);transform: translateY(0);-ms-transform: translateY(0);-moz-transform: translateY(0);}
 .slideInUp {animation: slideInUp .3s ease-in;-webkit-animation: slideInUp .3s ease-in;-ms-animation: slideInUp .3s ease-in;-moz-animation: slideInUp .3s ease-in}
 @-webkit-keyframes slideInUp {
 	0% {-webkit-transform: translateY(-100%);transform: translateY(-100%);-moz-transform: translateY(-100%);-ms-transform: translateY(-100%);-o-transform: translateY(-100%)}
@@ -26,13 +26,20 @@
 
 .date_info_box{color: #363837;font-size: 1.8em;text-align: center;padding: .6em 0;text-align: center;border-bottom: 1px solid #d4d4d4;font-weight: 700;}
 .date_class_box{text-align: center;padding:1em 2em;}
-.date_class{display: inline-block;font-size: 1.4em;width:40%;padding:.4em 0;text-align: center;color: #c91723;border:1px solid #c91723;cursor: pointer;}
+.date_class{display: inline-block;font-size: 1.4em;width:40%;padding:.4em 0;text-align: center;color: #c91723;border:1px solid #c91723;cursor: pointer;line-height: 1.6em;}
 .date_class_box .date_class:first-child{border-top-left-radius: .2em;border-bottom-left-radius: .2em}
 .date_class_box .date_class:last-child{border-top-right-radius: .2em;border-bottom-right-radius: .2em}
 .date_class_box .active{background-color: #c91723;color: #fff}
 .date_btn_box {overflow: hidden;position: relative;border-top:1px solid #d4d4d4;}
 .date_btn {color: #000;font-size: 1.6em;line-height: 1em;text-align: center;padding: .8em 1em;cursor: pointer;float: left;width: 50%;box-sizing: border-box;}
-.date_btn:first-child{border-right:1px solid #d4d4d4;}
+.date_btn:first-child{border-right:1px solid #d4d4d4;background-color: #d00b0b;color: #fff;}
 .gear {float: left;position: absolute;z-index: 9902;width: 5.5em;margin-top: -6em;cursor: pointer;}
 .date_roll>div .gear {width: 100%}
 .tooth {height: 2em;line-height: 2em;text-align: center}
+/*选择块*/
+.date_choice_wrap{}
+/*确认块*/
+.date_confirm_wrap{padding:1em 2em;text-align: center;display: none;}
+.confirm_tit{display: inline-block;font-size: 1.4em;color: #666;cursor: pointer;line-height: 1.6em;margin-bottom: 1em;}
+.confirm_p{font-size: 1.6em;line-height: 2em}
+.confirm_p b{color: #c91723;font-weight: normal;}

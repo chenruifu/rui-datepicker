@@ -53,7 +53,7 @@ window.ruiDatepicker = (function() {
 		this.minY = 1940;
 		this.minM = 1,
 		this.minD = 1,
-		this.maxY = 2019,
+		this.maxY = 2020,
 		this.maxM = 12,
 		this.maxD = 31,
 		this.type = 1 //0公历，1农历
@@ -170,6 +170,7 @@ window.ruiDatepicker = (function() {
 					_self.gearDate.innerHTML = '<div class="date_ctrl slideInUp">' +
 						'<div class="date_info_box lcalendar_info">' +
 						'</div>' +
+						'<div class="date_choice_wrap">' +
 						'<div class="date_class_box">' +
 						'<div class="date_class lcalendar_gongli">公历</div>' +
 						'<div class="date_class lcalendar_nongli">农历</div>' +
@@ -197,8 +198,15 @@ window.ruiDatepicker = (function() {
 						'</div>' +
 						'</div>' +
 						'</div>' +
+						'</div>' +
+						'</div>' +
+						'<div class="date_confirm_wrap">' +
+						'<div class="confirm_tit">请确认输入的时间是否正确</div>' +
+						'<div class="confirm_p">农历：<b class="confirm_gongli"></b></div>' +
+						'<div class="confirm_p">公历：<b class="confirm_nongli"></b></div>' +
+						'</div>' +
 						'<div class="date_btn_box">' +
-						'<div class="date_btn lcalendar_finish">确定</div>' +
+						'<div class="date_btn lcalendar_finish">完成</div>' +
 						'<div class="date_btn lcalendar_cancel">取消</div>' +
 						'</div>' +
 						'</div>';
@@ -206,6 +214,7 @@ window.ruiDatepicker = (function() {
 					_self.gearDate.innerHTML = '<div class="date_ctrl slideInUp">' +
 						'<div class="date_info_box lcalendar_info">' +
 						'</div>' +
+						'<div class="date_choice_wrap">' +
 						'<div class="date_class_box">' +
 						'<div class="date_class lcalendar_gongli">公历</div>' +
 						'<div class="date_class lcalendar_nongli">农历</div>' +
@@ -229,8 +238,14 @@ window.ruiDatepicker = (function() {
 						'</div>' +
 						'</div>' +
 						'</div>' +
+						'</div>' +
+						'<div class="date_confirm_wrap">' +
+						'<div class="confirm_tit">请确认输入的时间是否正确</div>' +
+						'<div class="confirm_p">农历：<b class="confirm_gongli"></b></div>' +
+						'<div class="confirm_p">公历：<b class="confirm_nongli"></b></div>' +
+						'</div>' +
 						'<div class="date_btn_box">' +
-						'<div class="date_btn lcalendar_finish">确定</div>' +
+						'<div class="date_btn lcalendar_finish" data-isconfirm="0">完成</div>' +
 						'<div class="date_btn lcalendar_cancel">取消</div>' +
 						'</div>' +
 						'</div>';
@@ -444,7 +459,7 @@ window.ruiDatepicker = (function() {
 					//当年份到达最大值
 					if (yyVal == passY - 1) {
 						if(_self.type){
-							maxM = _self.maxM - 2;
+							maxM = _self.maxM - 1;
 						}else{
 							maxM = _self.maxM - 1;
 						}
@@ -504,11 +519,11 @@ window.ruiDatepicker = (function() {
 					var maxD = maxMonthDays - 1;
 					var minD = 0;
 					//当年份月份到达最大值
-					if (yyVal == passY - 1 && 11 == mmVal + 1) {
+					if (yyVal == passY - 1 && 12 == mmVal + 1) {
 						if(_self.type){
-							maxD = _self.maxD - 7;
+							maxD = _self.maxD - 15;
 						}else{
-							maxD = _self.maxD - 2;
+							maxD = _self.maxD - 1;
 						}
 						// maxD = _self.maxD - 1;
 					}
@@ -990,7 +1005,7 @@ window.ruiDatepicker = (function() {
 							//当年份到达最大值
 							if (yyVal == passY - 1) {
 								if(_self.type){
-									maxM = _self.maxM - 2;
+									maxM = _self.maxM - 1;
 								}else{
 									maxM = _self.maxM - 1;
 								}
@@ -1028,11 +1043,11 @@ window.ruiDatepicker = (function() {
 							var maxD = maxMonthDays - 1;
 							var minD = 0;
 							//当年份月份到达最大值
-							if (yyVal == passY - 1 && 11 == mmVal + 1) {
+							if (yyVal == passY - 1 && 12 == mmVal + 1) {
 								if(_self.type){
-									maxD = _self.maxD - 7;
+									maxD = _self.maxD - 15;
 								}else{
-									maxD = _self.maxD - 2;
+									maxD = _self.maxD - 1;
 								}
 								// maxD = _self.maxD - 1;
 							}
@@ -1086,8 +1101,22 @@ window.ruiDatepicker = (function() {
 				target.setAttribute("val", val);
 				setDateGearTooth();
 			}
-			//取消
-			function closeMobileCalendar(e) {
+			//取消 type 判断是不是点击完成后调用
+			function closeMobileCalendar(e,type) {
+				var btnFinish=_self.gearDate.querySelector('.lcalendar_finish');
+				var btnCancel=_self.gearDate.querySelector('.lcalendar_cancel');
+				// 判断是否在等待确认状态
+				if(btnFinish.getAttribute('data-isconfirm')-0 && !type){
+					//设置日期
+					getCalendarDate();
+					btnFinish.setAttribute('data-isconfirm',0);
+					_self.gearDate.querySelector('.date_choice_wrap').style.display='block';
+					_self.gearDate.querySelector('.date_confirm_wrap').style.display='none';
+					// 设置文案
+					btnFinish.innerHTML='完成';
+					btnCancel.innerHTML='取消';
+					return false;
+				}
 				e.preventDefault();
 				if (!window.CustomEvent) {
 					var evt = new CustomEvent('input');
@@ -1098,6 +1127,39 @@ window.ruiDatepicker = (function() {
 			//日期确认
 			function finishMobileDate(e) {
 				var d=getCalendarDate();
+				var btnFinish=_self.gearDate.querySelector('.lcalendar_finish');
+				var btnCancel=_self.gearDate.querySelector('.lcalendar_cancel');
+				// 判断是否在等待确认状态
+				if(!(btnFinish.getAttribute('data-isconfirm')-0) && _self.trigger.getAttribute('data-confirm')!='false'){
+					var topInfo=_self.gearDate.querySelector(".lcalendar_info");
+					var confirmNongli=_self.gearDate.querySelector(".confirm_nongli");
+					var confirmGongli=_self.gearDate.querySelector(".confirm_gongli");
+					_self.gearDate.querySelector('.date_choice_wrap').style.display='none';
+					_self.gearDate.querySelector('.date_confirm_wrap').style.display='block';
+					btnFinish.setAttribute('data-isconfirm',1);
+					// 设置文案
+					topInfo.innerHTML='确认日期';
+					btnFinish.innerHTML='确认';
+					btnCancel.innerHTML='返回修改';
+					// 时辰
+					var nongliHourStr='',
+						gongliHourStr='';
+					if(d.hh){
+						if(d.hh<0){
+							nongliHourStr="时辰未知";
+							gongliHourStr="时辰未知";
+						}else{
+							gongliHourStr=d.hh+'时';
+							nongliHourStr=getChinese('hh',d.hh)+'时';
+						}
+					}
+					// 设置公历选择时间
+					confirmGongli.innerHTML=d.yy+ "年" + d.mm + "月" +d.dd+'日 '+gongliHourStr;
+					// 设置农历选择时间
+					var mmChina=d._mm<0?getChinese('rm',-d._mm):getChinese('mm',d._mm);
+					confirmNongli.innerHTML=d._yy+'年'+mmChina+''+getChinese('dd',d._dd)+' '+nongliHourStr;
+					return false;
+				}
 				_self.trigger.setAttribute('data-date',d.yy+ "-" + d.mm + "-" +d.dd);
 				_self.trigger.setAttribute('data-hour',d.hh);
 				var inputId=_self.trigger.getAttribute('data-toid-date');
@@ -1125,9 +1187,9 @@ window.ruiDatepicker = (function() {
 					}
 					_self.trigger.value = "公历:"+d.yy+ "-" + d.mm + "-" +d.dd+' '+hourStr;
 				}
-				closeMobileCalendar(e);
+				closeMobileCalendar(e,'finish');
 			}
-			//设置顶部日期+返回对象 _yy 农历年  yy公历年   
+			//设置顶部日期+设置确认框数据+返回对象 _yy 农历年  yy公历年   
 			function getCalendarDate(){
 				var passY = _self.maxY - _self.minY + 1;
 				var val_yy = parseInt(Math.round(_self.gearDate.querySelector(".date_yy").getAttribute("val")));
