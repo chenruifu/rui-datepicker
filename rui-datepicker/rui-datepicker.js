@@ -202,8 +202,8 @@ window.ruiDatepicker = (function() {
 						'</div>' +
 						'<div class="date_confirm_wrap">' +
 						'<div class="confirm_tit">请确认输入的时间是否正确</div>' +
-						'<div class="confirm_p">农历：<b class="confirm_gongli"></b></div>' +
-						'<div class="confirm_p">公历：<b class="confirm_nongli"></b></div>' +
+						'<div class="confirm_p">公历：<b class="confirm_gongli"></b></div>' +
+						'<div class="confirm_p">农历：<b class="confirm_nongli"></b></div>' +
 						'</div>' +
 						'<div class="date_btn_box">' +
 						'<div class="date_btn lcalendar_finish">完成</div>' +
@@ -241,8 +241,8 @@ window.ruiDatepicker = (function() {
 						'</div>' +
 						'<div class="date_confirm_wrap">' +
 						'<div class="confirm_tit">请确认输入的时间是否正确</div>' +
-						'<div class="confirm_p">农历：<b class="confirm_gongli"></b></div>' +
-						'<div class="confirm_p">公历：<b class="confirm_nongli"></b></div>' +
+						'<div class="confirm_p">公历：<b class="confirm_gongli"></b></div>' +
+						'<div class="confirm_p">农历：<b class="confirm_nongli"></b></div>' +
 						'</div>' +
 						'<div class="date_btn_box">' +
 						'<div class="date_btn lcalendar_finish" data-isconfirm="0">完成</div>' +
