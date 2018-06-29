@@ -1,4 +1,4 @@
-<rui-datepicker date="2017-12-23" hour="9" confirm="true" default="lunar" bind:confirm="dateConfirm" show="{{isRuiDatepickerShow}}"></rui-datepicker>
+<rui-datepicker id="ruiDatepicker"></rui-datepicker>
 
 <view class="header" bindtap="abc">
 	<view class="h1">公农历日期选择器</view>
