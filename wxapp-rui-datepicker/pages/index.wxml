@@ -1,0 +1,21 @@
+<rui-datepicker date="2017-12-23" hour="9" confirm="true" default="lunar" bind:confirm="dateConfirm" show="{{isRuiDatepickerShow}}"></rui-datepicker>
+
+<view class="header" bindtap="abc">
+	<view class="h1">公农历日期选择器</view>
+	<text class="p">@author：羯瑞</text>
+</view>
+<form bindsubmit="formSubmit">
+	<view class="date_input">
+		<view class="p">带时辰</view>
+		<input type="text" placeholder="请选择日期" disabled="true" bindtap="showDatepicker" />
+	</view>
+	<view class="date_input">
+		<view class="p">不带时辰</view>
+		<input type="text" placeholder="请选择日期" disabled="true" bindtap="showDatepicker" />
+	</view>
+	<view class="date_input">
+		<view class="p">带时辰（不需要确认）</view>
+		<input type="text" placeholder="请选择日期" disabled="true" bindtap="showDatepicker" />
+	</view>
+	<button class="date_submit" formType="submit">表单提交</button>
+</form>

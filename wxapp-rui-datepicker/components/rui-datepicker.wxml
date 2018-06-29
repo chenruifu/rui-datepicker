@@ -1,0 +1,30 @@
+<view class="datepicker_shade {{show ? 'datepicker_shade_active' : ''}}"></view>
+<view class="datepicker_wrap {{show ? 'datepicker_wrap_active' : ''}}">
+    <view class="datepicker_topinfo">公历:2018年6月21日 2时</view>
+    <view class="datepicker_select" hidden="{{!hiddenConfirm}}">
+    	<view class="datepicker_class">
+	        <view class="active">公历</view>
+	        <view class="">农历</view>
+	    </view>
+	    <picker-view indicator-style="height:40px" indicator-class="column_class" class="select_wrap" value="{{[2,2,2]}}" bindchange="bindChange">
+	        <picker-view-column>
+	            <view wx:for="{{yearArr}}" wx:key="*id" style="line-height: 40px;">{{item}}年</view>
+	        </picker-view-column>
+	        <picker-view-column>
+	            <view wx:for="{{monthArr}}" wx:key="*id" style="line-height: 40px;">{{item}}月</view>
+	        </picker-view-column>
+	        <picker-view-column>
+	            <view wx:for="{{dayArr}}" wx:key="*id" style="line-height: 40px;">{{item}}日</view>
+	        </picker-view-column>
+	    </picker-view>
+	</view>
+	<view class="datepicker_confirm" hidden="{{hiddenConfirm}}">
+		<view class="tip">请确认输入的时间是否正确</view>
+		<view class="p">公历：<text>2018年6月21日 2时</text></view>
+		<view class="p">农历：<text>2018年6月21日 2时</text></view>
+	</view> 
+    <view class="datepicker_bottom">
+    	<view bindtap="cancel">{{hiddenConfirm ? '取消' : '返回修改'}}</view>
+    	<view bindtap="confirm">{{hiddenConfirm ? '完成' : '确认'}}</view>
+    </view>
+</view>

@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "rui-datepicker": "/components/rui-datepicker"
+    }
+}

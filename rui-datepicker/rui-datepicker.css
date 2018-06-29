@@ -31,8 +31,8 @@
 .date_class_box .date_class:last-child{border-top-right-radius: .2em;border-bottom-right-radius: .2em}
 .date_class_box .active{background-color: #c91723;color: #fff}
 .date_btn_box {overflow: hidden;position: relative;border-top:1px solid #d4d4d4;}
-.date_btn {color: #000;font-size: 1.6em;line-height: 1em;text-align: center;padding: .8em 1em;cursor: pointer;float: left;width: 50%;box-sizing: border-box;}
-.date_btn:first-child{border-right:1px solid #d4d4d4;background-color: #d00b0b;color: #fff;}
+.date_btn {color: #000;font-size: 1.6em;line-height: 1em;text-align: center;padding: .8em 1em;cursor: pointer;float: right;width: 50%;box-sizing: border-box;}
+.date_btn:first-child{border-left:1px solid #d4d4d4;background-color: #d00b0b;color: #fff;}
 .gear {float: left;position: absolute;z-index: 9902;width: 5.5em;margin-top: -6em;cursor: pointer;}
 .date_roll>div .gear {width: 100%}
 .tooth {height: 2em;line-height: 2em;text-align: center}
