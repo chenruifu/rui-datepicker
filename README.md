@@ -8,4 +8,4 @@
 * 支持农历、公历切换
 * 支持设置选择时辰
 
-
+## 公农历日期选择器-微信小程序版(wxapp-rui-datepicker) [项目地址](https://github.com/chenruifu/r-libs/tree/master/wxapp-rui-datepicker)
