@@ -58,6 +58,7 @@ lYear: 1991         //农历年
 lMonth: 11          //农历月
 lDay: 26            //农历日
 lastTab: "solar"    //最后选择的是农历（lunar）还是公历（solar）
+
 lunarStr: "农历:1991年十一月廿六 时辰未知"
 solarStr: "公历:1991年12月31日 时辰未知"
 thisStr: "公历:1991年12月31日 时辰未知"
