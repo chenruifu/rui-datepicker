@@ -1,4 +1,4 @@
-/*
+	/*
  * ruiDatePicker 农历公历-日历控件
  * 版本：1.0
  * 作者：羯瑞
@@ -1105,6 +1105,7 @@ window.ruiDatepicker = (function() {
 			function closeMobileCalendar(e,type) {
 				var btnFinish=_self.gearDate.querySelector('.lcalendar_finish');
 				var btnCancel=_self.gearDate.querySelector('.lcalendar_cancel');
+				e.preventDefault();
 				// 判断是否在等待确认状态
 				if(btnFinish.getAttribute('data-isconfirm')-0 && !type){
 					//设置日期
@@ -1117,7 +1118,6 @@ window.ruiDatepicker = (function() {
 					btnCancel.innerHTML='取消';
 					return false;
 				}
-				e.preventDefault();
 				if (!window.CustomEvent) {
 					var evt = new CustomEvent('input');
 					_self.trigger.dispatchEvent(evt);
