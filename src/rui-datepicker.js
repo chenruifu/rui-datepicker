@@ -1,10 +1,13 @@
-	/*
- * ruiDatePicker 农历公历-日历控件
- * 版本：1.0
- * 作者：羯瑞
- * 邮箱：410232098@qq.com
- * 创建于：2016-12-31
+/**
+
+ @Name：rui-datepicker v1.1.0
+ @Name：公农历日期选择器
+ @Author：羯瑞
+ @Site：https://github.com/chenruifu/rui-datepicker
+ @License：MIT
+    
  */
+
 window.ruiDatepicker = (function() {
 	// 兼容IE-classList处理
 	if (!("classList" in document.documentElement)) {
