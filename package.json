@@ -28,6 +28,7 @@
     "gulp-css-url-versioner": "^1.1.1",
     "gulp-header": "^2.0.5",
     "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.0.0",
     "gulp-uglify": "^3.0.1"
   }
 }
