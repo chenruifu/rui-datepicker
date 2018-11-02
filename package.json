@@ -19,6 +19,7 @@
     "url": "https://github.com/chenruifu/rui-datepicker/issues"
   },
   "homepage": "https://github.com/chenruifu/rui-datepicker#readme",
+  "dependencies": {},
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "del": "^3.0.0",
