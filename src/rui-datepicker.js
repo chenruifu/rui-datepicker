@@ -1133,7 +1133,7 @@ window.ruiDatepicker = (function() {
 				var btnFinish=_self.gearDate.querySelector('.lcalendar_finish');
 				var btnCancel=_self.gearDate.querySelector('.lcalendar_cancel');
 				// 判断是否在等待确认状态
-				if(!(btnFinish.getAttribute('data-isconfirm')-0) && _self.trigger.getAttribute('data-confirm')!='false'){
+				if(!(btnFinish.getAttribute('data-isconfirm')-0) && _self.trigger.getAttribute('data-confirm')=='true'){
 					var topInfo=_self.gearDate.querySelector(".lcalendar_info");
 					var confirmNongli=_self.gearDate.querySelector(".confirm_nongli");
 					var confirmGongli=_self.gearDate.querySelector(".confirm_gongli");
