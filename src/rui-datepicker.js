@@ -1121,7 +1121,7 @@ window.ruiDatepicker = (function() {
 					btnCancel.innerHTML='取消';
 					return false;
 				}
-				if (!window.CustomEvent) {
+				if (window.CustomEvent) {
 					var evt = new CustomEvent('input');
 					_self.trigger.dispatchEvent(evt);
 				}
