@@ -828,12 +828,14 @@ window.ruiDatepicker = (function() {
 					e.preventDefault();
 					var target = targetPc;//鼠标兼容处理
 					while (true) {
+						if(!target) break;
 						if (!target.classList.contains("gear")) {
 							target = target.parentElement;
 						} else {
 							break
 						}
 					}
+					if(!target) return;
 					target["new_" + target.id] = e.screenY;
 					target["n_t_" + target.id] = (new Date()).getTime();
 					var f = (target["new_" + target.id] - target["old_" + target.id]) * 18 / 370;
@@ -857,12 +859,14 @@ window.ruiDatepicker = (function() {
 	                e.preventDefault();
 					var target = targetPc;//鼠标兼容处理
 					while (true) {
+						if(!target) break;
 						if (!target.classList.contains("gear")) {
 							target = target.parentElement;
 						} else {
 							break;
 						}
 					}
+					if(!target) return;
 					var flag = (target["new_" + target.id] - target["old_" + target.id]) / (target["n_t_" + target.id] - target["o_t_" + target.id]);
 					if (Math.abs(flag) <= 0.2) {
 						target["spd_" + target.id] = (flag < 0 ? -0.08 : 0.08);
