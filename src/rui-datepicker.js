@@ -170,11 +170,9 @@ window.ruiDatepicker = (function() {
 				_self.gearDate.className = "gearDate";
 				// 判断是否启用时辰
 				if(_self.trigger.getAttribute('data-toid-hour')){
-					_self.gearDate.innerHTML = '<div class="date_ctrl bounceInUp">' +
-						'<div class="date_btn_wrap">'+
-						'<div class="date_btn lcalendar_cancel">取消</div>'+
-						'<div class="date_btn lcalendar_finish">完成</div>' +
-						'</div>'+
+					_self.gearDate.innerHTML = '<div class="date_ctrl slideInUp">' +
+						'<div class="date_info_box lcalendar_info">' +
+						'</div>' +
 						'<div class="date_choice_wrap">' +
 						'<div class="date_class_box">' +
 						'<div class="date_class lcalendar_gongli">公历</div>' +
@@ -210,13 +208,15 @@ window.ruiDatepicker = (function() {
 						'<div class="confirm_p">公历：<b class="confirm_gongli"></b></div>' +
 						'<div class="confirm_p">农历：<b class="confirm_nongli"></b></div>' +
 						'</div>' +
+						'<div class="date_btn_box">' +
+						'<div class="date_btn lcalendar_finish">完成</div>' +
+						'<div class="date_btn lcalendar_cancel">取消</div>' +
+						'</div>' +
 						'</div>';
 				}else{
-					_self.gearDate.innerHTML = '<div class="date_ctrl bounceInUp">' +
-						'<div class="date_btn_wrap">'+
-						'<div class="date_btn lcalendar_cancel">取消</div>'+
-						'<div class="date_btn lcalendar_finish" data-isconfirm="0">完成</div>' +
-						'</div>'+
+					_self.gearDate.innerHTML = '<div class="date_ctrl slideInUp">' +
+						'<div class="date_info_box lcalendar_info">' +
+						'</div>' +
 						'<div class="date_choice_wrap">' +
 						'<div class="date_class_box">' +
 						'<div class="date_class lcalendar_gongli">公历</div>' +
@@ -246,6 +246,10 @@ window.ruiDatepicker = (function() {
 						'<div class="confirm_tit">请确认输入的时间是否正确</div>' +
 						'<div class="confirm_p">公历：<b class="confirm_gongli"></b></div>' +
 						'<div class="confirm_p">农历：<b class="confirm_nongli"></b></div>' +
+						'</div>' +
+						'<div class="date_btn_box">' +
+						'<div class="date_btn lcalendar_finish" data-isconfirm="0">完成</div>' +
+						'<div class="date_btn lcalendar_cancel">取消</div>' +
 						'</div>' +
 						'</div>';
 				}
@@ -358,15 +362,12 @@ window.ruiDatepicker = (function() {
 					dd: date.getDate() - 1
 				};
 				if (/^\d{4}-\d{1,2}-\d{1,2}$/.test(_self.trigger.getAttribute('data-date'))) {
-					var rs = _self.trigger.getAttribute('data-date').match(/(^|-)\d{1,4}/g);
+					rs = _self.trigger.getAttribute('data-date').match(/(^|-)\d{1,4}/g);
 					dateArr.yy = rs[0] - _self.minY;
 					dateArr.mm = rs[1].replace(/-/g, "") - 1;
 					dateArr.dd = rs[2].replace(/-/g, "") - 1;
 				} else {
-					//默认年份1994年7月1日
-					dateArr.yy = dateArr.yy + 1875 - _self.minY; //年
-					dateArr.mm = 6; //月
-					dateArr.dd = 0; //日
+					dateArr.yy = dateArr.yy + 1900 - _self.minY;
 				};
 				_self.gearDate.querySelector(".date_yy").setAttribute("val", dateArr.yy);
 				_self.gearDate.querySelector(".date_mm").setAttribute("val", dateArr.mm);
@@ -1137,12 +1138,14 @@ window.ruiDatepicker = (function() {
 				var btnCancel=_self.gearDate.querySelector('.lcalendar_cancel');
 				// 判断是否在等待确认状态
 				if(!(btnFinish.getAttribute('data-isconfirm')-0) && _self.trigger.getAttribute('data-confirm')=='true'){
+					var topInfo=_self.gearDate.querySelector(".lcalendar_info");
 					var confirmNongli=_self.gearDate.querySelector(".confirm_nongli");
 					var confirmGongli=_self.gearDate.querySelector(".confirm_gongli");
 					_self.gearDate.querySelector('.date_choice_wrap').style.display='none';
 					_self.gearDate.querySelector('.date_confirm_wrap').style.display='block';
 					btnFinish.setAttribute('data-isconfirm',1);
 					// 设置文案
+					topInfo.innerHTML='确认日期';
 					btnFinish.innerHTML='确认';
 					btnCancel.innerHTML='返回修改';
 					// 时辰
@@ -1217,6 +1220,7 @@ window.ruiDatepicker = (function() {
 					}
 				}
 				var objDate=calendarConvert(_self.type,date_yy,date_mm,date_dd);
+				var info=_self.gearDate.querySelector(".lcalendar_info");
 				if(_self.type){
 					_self.trigger.setAttribute("data-type", 1);
 					var mmChina=date_mm<0?getChinese('rm',-date_mm):getChinese('mm',date_mm);
@@ -1228,6 +1232,7 @@ window.ruiDatepicker = (function() {
 							hhStr=getChinese('hh',date_hh)+'时';
 						}
 					}
+					info.innerHTML='农历:'+date_yy+'年'+mmChina+''+getChinese('dd',date_dd)+' '+hhStr;
 					return {
 						yy:objDate.yy,
 						mm:objDate.mm,
@@ -1247,6 +1252,7 @@ window.ruiDatepicker = (function() {
 							hhStr=date_hh+'时';
 						}
 					}
+					info.innerHTML='公历:'+date_yy+'年'+date_mm+'月'+date_dd+'日'+' '+hhStr;
 					return {
 						_yy:objDate.yy,
 						_mm:objDate.mm,
