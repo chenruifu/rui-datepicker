@@ -2,7 +2,7 @@
 
 rui-datepicker是一款支持农历公历选择的原生插件。PC和移动端通用，支持公历农历切换，带时辰和不带时辰...
 
-时间区间定死的1940-2-8至2018-12-31，如需调整可到代码里面自行修改。
+时间区间定死的1940-2-8至2030-12-31，如需调整可到代码里面自行修改。
 
 
 ### 使用方法
@@ -30,17 +30,24 @@ rui-datepicker是一款支持农历公历选择的原生插件。PC和移动端�
 <input type="hidden" id="date1" name="date">
 <input type="hidden" id="hour1" name="hour">
 
+<!-- 带时辰分钟 -->
+<input id="demo4" type="text" data-confirm="true" data-toid-date="date3" data-toid-hour="hour3" data-toid-minute="minute3" name="input_date" data-hour="" placeholder="日期选择带时辰" readonly="readonly"/>
+<input type="hidden" id="date3" name="date">
+<input type="hidden" id="hour3" name="hour">
+<input type="hidden" id="minute3" name="minute">
+
 <!-- js -->
 <script>
     var date1 = new ruiDatepicker().init('#demo1');
     var date2 = new ruiDatepicker().init('#demo2');
     var date3 = new ruiDatepicker().init('#demo3');
+    var date4 = new ruiDatepicker().init('#demo4');
 </script>
 ```
 
 ### 参数配置
 
-* 参数配置全部在HTML中，日期区间默认写死：1940-2-8至2018-12-31
+* 参数配置全部在HTML中，日期区间默认写死：1940-2-8至2030-12-31
 
 ```js
 //起始农历&公历：默认公历
@@ -55,6 +62,16 @@ data-toid-date="inputDate"
 
 //确认日期后赋值隐藏表单时辰ID(公历)
 data-toid-hour="inputHour"
+
+//确认日期后赋值隐藏表单年份ID(公历)
+data-toid-year="inputYear"
+
+//确认日期后赋值隐藏表单月份ID(公历)
+data-toid-month="inputMonth"
+
+//确认日期后赋值隐藏表单日期ID(公历)
+data-toid-day="inputDay"
+
 //起始时辰：默认0未知，该参数作用居于data-toid-hour为真
 data-hour="3"  
 

@@ -1,97 +1,49 @@
-.gearDate {font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 10px;background-color: rgba(0, 0, 0, 0.5);display: block;position: absolute;position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 9900;overflow: hidden;-webkit-animation-fill-mode: both;animation-fill-mode: both;-webkit-transform: translateZ(0);}
-.date_ctrl {vertical-align: middle;background-color: #fff;box-shadow: 0 0 2px rgba(0,0,0,.4);color: #363837;margin: 0;
-	height: auto;width: 100%;max-width: 600px;position: absolute;left: 0;right:0;bottom: 0;z-index: 9902;overflow: hidden;margin:0 auto;user-select: none;-ms-user-select: none;}
-.bounceInUp{animation: bounceInUp 1s .2s ease both;-webkit-animation: bounceInUp 1s .2s ease both;-ms-animation: bounceInUp 1s .2s ease both;-moz-animation: bounceInUp 1s .2s ease both}
-@-webkit-keyframes bounceInUp {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(2000px)
-	}
-	60% {
-		opacity: 1;
-		-webkit-transform: translateY(-30px)
-	}
-	80% {
-		-webkit-transform: translateY(10px)
-	}
-	100% {
-		-webkit-transform: translateY(0)
-	}
-}
+.gearDate {font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 10px; background-color: rgba(0, 0, 0, 0.5);display: block;position: absolute;position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 9900;overflow: hidden;-webkit-animation-fill-mode: both;animation-fill-mode: both;transform: translateZ(0);}
+.date_ctrl {vertical-align: middle;background-color: #fff;box-shadow: 0 0 2px rgba(0,0,0,.4);color: #363837;margin: 0;height: auto;width: 90%;max-width: 600px;position: absolute;left: 0;right:0;top: 30%;z-index: 9902;overflow: hidden;margin:0 auto;user-select: none;-ms-user-select: none;border-radius: 3px;box-shadow: 0 0 2px rgba(0,0,0,.4);}
+.bounceInUp{animation: bounceInUp .3s ease-in;}
 @keyframes bounceInUp {
 	0% {
-		opacity: 0;
-		-webkit-transform: translateY(2000px)
-	}
-	60% {
-		opacity: 1;
-		-webkit-transform: translateY(-30px)
-	}
-	80% {
-		-webkit-transform: translateY(10px)
+		transform: translateY(-100%)
 	}
 	100% {
-		-webkit-transform: translateY(0)
+		transform: translateY(0)
 	}
 }
-@-moz-keyframes bounceInUp {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(2000px)
-	}
-	60% {
-		opacity: 1;
-		-webkit-transform: translateY(-30px)
-	}
-	80% {
-		-webkit-transform: translateY(10px)
-	}
-	100% {
-		-webkit-transform: translateY(0)
-	}
-	
+
+.date_roll {position: relative;width: 100%;height: auto;overflow: hidden;background-color: transparent;-webkit-mask: -webkit-gradient(linear, 0% 50%, 0% 100%, from(#debb47), to(rgba(36, 142, 36, 0)));-webkit-mask: -webkit-linear-gradient(top, #debb47 50%, rgba(36, 142, 36, 0));mask: gradient(linear, 0% 50%, 0% 100%, from(#debb47), to(rgba(36, 142, 36, 0)));}
+.date_roll>div{font-size: 2em;height: 10em;float: left;background-color: transparent;position: relative;overflow: hidden;width: 33.3333%;}
+.date_roll_hh>div{width: 20%;}
+.date_roll_hh>div:last-child{width: 40%;}
+.date_roll_hhii>div{width: 20%;}
+.date_roll_mask {-webkit-mask: -webkit-gradient(linear, 0% 40%, 0% 0%, from(#debb47), to(rgba(36, 142, 36, 0)));-webkit-mask: -webkit-linear-gradient(bottom, #debb47 50%, rgba(36, 142, 36, 0));mask: -webkit-gradient(linear, 0% 40%, 0% 0%, from(#debb47), to(rgba(36, 142, 36, 0)));}
+.date_grid {position: relative;top: 4em;width: 100%;height: 2em;margin: 0;box-sizing: border-box;z-index: 0;
+    border-top: 2px solid #FE5B00;border-bottom: 2px solid #FE5B00;
+    box-shadow: rgb(254, 91, 0) 0px 0px 4px; opacity: 0.3;
 }
-@-ms-keyframes bounceInUp {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(2000px)
-	}
-	60% {
-		opacity: 1;
-		-webkit-transform: translateY(-30px)
-	}
-	80% {
-		-webkit-transform: translateY(10px)
-	}
-	100% {
-		-webkit-transform: translateY(0)
-	}
-}
-.date_roll {position: relative;width: 100%;height: auto;overflow: hidden;font-weight: bold;background-color: transparent;-webkit-mask: -webkit-gradient(linear, 0% 50%, 0% 100%, from(#debb47), to(rgba(36, 142, 36, 0)));-webkit-mask: -webkit-linear-gradient(top, #debb47 50%, rgba(36, 142, 36, 0));}
-.date_roll>div{font-size: 2em;height: 6em;float: left;background-color: transparent;position: relative;overflow: hidden;width: 33.33%;}
-.date_roll_more>div{width: 25%;}
-.date_roll_mask {-webkit-mask: -webkit-gradient(linear, 0% 40%, 0% 0%, from(#debb47), to(rgba(36, 142, 36, 0)));-webkit-mask: -webkit-linear-gradient(bottom, #debb47 50%, rgba(36, 142, 36, 0));}
-.date_grid {position: relative;top: 2em;width: 100%;height: 2em;margin: 0;box-sizing: border-box;z-index: 0;background-color: #fff;border-top: 2px solid #efbcc0;border-bottom: 2px solid #efbcc0;}
 .date_grid>div {color: #000;position: absolute;right: 0;top: 0;font-size: .8em;line-height: 2.5em}
 
 .date_cw_btn{ position: relative; }
 .date_class_box{text-align: center;padding:1em 0;border-bottom: 1px solid #f6f6f6;}
-.date_class{display: inline-block;font-size: 1.4em;padding:.4em 0; width: 25%; text-align: center;color: #c91723;border:1px solid #c91723;
+.date_class{display: inline-block;font-size: 1.4em;padding:.2em 0; width: 25%; text-align: center;color: #FE5B00;border:1px solid #FE5B00;
 	cursor: pointer;line-height: 1.6em; box-sizing: border-box;}
 .date_class:first-of-type{border-top-left-radius: 5px;border-bottom-left-radius: 5px; font-weight: 700;}
 .date_class:last-of-type{border-top-right-radius: 5px;border-bottom-right-radius: 5px}
-.date_class_box .active{background-color: #c91723;color: #fff}
+.date_class_box .active{background-color: #FE5B00;color: #fff}
 .date_btn_box {overflow: hidden;border-top:1px solid #f6f6f6;}
-.date_btn { position: absolute; top: 0; color: #333;font-size: 1.6em; line-height: 1.6em; padding: 1em 0; text-align: center;cursor: pointer;width: 25%;box-sizing: border-box;}
+.date_btn_wrap{position: relative;z-index: 1;}
+.date_btn { position: absolute; top: 0; color: #333;font-size: 1.6em; line-height: 1.6em; padding: 0.8em 0; text-align: center;cursor: pointer;width: 25%;box-sizing: border-box;font-weight: 700;}
 .date_btn:first-child{ left: 0; }
-.date_btn:last-child{right: 0;color: #d00b0b;}
-.gear {float: left;position: absolute;z-index: 9902;width: 5.5em;margin-top: -6em;cursor: pointer;}
+.date_btn:last-child{right: 0;color: #FE5B00;}
+.gear {float: left;position: absolute;z-index: 9902;width: 5.5em;margin-top: -4em;cursor: pointer;}
 .date_roll>div .gear {width: 100%}
-.tooth {height: 2em;line-height: 2em;text-align: center}
+.tooth {height: 2.8571em;line-height: 2.8571em;text-align: center;font-size: .7em;}
 /*确认块*/
-.date_confirm_wrap{padding:4em 2em 1em;text-align: center;display: none;}
-.confirm_tit{display: inline-block;font-size: 1.4em;color: #666;cursor: pointer;line-height: 1.6em;margin-bottom: 1em;}
-.confirm_p{font-size: 1.6em;line-height: 2em}
-.confirm_p b{color: #c91723;font-weight: normal;}
-
-.current{color: red;}
+.date_confirm_wrap{text-align: center;display: none;position: relative;}
+.confirm_tit{padding:0.68em 0;border-bottom: 1px solid #f6f6f6;font-size: 1.8em;color: #FE5B00;}
+.confirm_tip{display: inline-block;font-size: 1.4em;color: #666;;line-height: 1.6em;margin: 1em;}
+.confirm_p{font-size: 1.7em;line-height: 2em;}
+.confirm_p b{color: #FE5B00;font-weight: normal;}
+.confirm_btn{position: relative;padding:1.4em 0 2.7em;}
+.confirm_btn>div{display: inline-block;margin: 0 1em;color: #fff;font-size: 1.6em;border-radius: 5px;padding:.6em 1.2em;}
+.confirm_btn_cancel{background-color: #b1b1b1;}
+.confirm_btn_finish{background-color: #FE5B00}

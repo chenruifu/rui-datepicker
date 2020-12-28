@@ -42,10 +42,18 @@
 		<input type="hidden" id="date2" name="date">
 		<input type="hidden" id="hour2" name="hour">
 	</div>
+	<div class="date_input">
+		<p>带时辰分钟（需要确认）</p>
+		<input id="demo4" type="text" data-confirm="true" data-toid-date="date3" data-toid-hour="hour3" data-toid-minute="minute3" name="input_date" data-hour="" placeholder="日期选择带时辰" readonly="readonly"/>
+		<input type="hidden" id="date3" name="date">
+		<input type="hidden" id="hour3" name="hour">
+		<input type="hidden" id="minute3" name="minute">
+	</div>
 	<script>
 		var date1 = new ruiDatepicker().init('#demo1');
 		var date2 = new ruiDatepicker().init('#demo2');
 		var date3 = new ruiDatepicker().init('#demo3');
+		var date4 = new ruiDatepicker().init('#demo4');
 	</script>
 </body>
 </html>
