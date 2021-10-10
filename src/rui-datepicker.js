@@ -231,19 +231,15 @@ window.ruiDatepicker = (function() {
 					changeBtn.style.opacity = '0';
 				}
 				dateCtrlInit();
-				var hasTouch='ontouchstart' in window;
-				var lcalendar_cancel = _self.gearDate.querySelector(".lcalendar_cancel");
-				lcalendar_cancel.addEventListener(hasTouch?'touchstart':'click', closeMobileCalendar);
-				var lcalendar_finish = _self.gearDate.querySelector(".lcalendar_finish");
-				lcalendar_finish.addEventListener(hasTouch?'touchstart':'click', finishMobileDate);
-				var confirm_cancel = _self.gearDate.querySelector(".confirm_btn_cancel");
-				confirm_cancel.addEventListener(hasTouch?'touchstart':'click', closeMobileCalendar);
-				var confirm_finish = _self.gearDate.querySelector(".confirm_btn_finish");
-				confirm_finish.addEventListener(hasTouch?'touchstart':'click', finishMobileDate);
-				var lcalendar_gongli = _self.gearDate.querySelector(".lcalendar_gongli");
-				var lcalendar_nongli = _self.gearDate.querySelector(".lcalendar_nongli");
-				lcalendar_gongli.addEventListener(hasTouch?'touchstart':'click', function(){convertTap('gongli')},false);
-				lcalendar_nongli.addEventListener(hasTouch?'touchstart':'click', function(){convertTap('nongli')},false);
+				var hasTouch=window.ontouchstart ? 'touchstart' : 'click';
+				_self.gearDate.querySelector(".lcalendar_cancel").addEventListener(hasTouch, closeMobileCalendar);
+				_self.gearDate.querySelector(".lcalendar_finish").addEventListener(hasTouch, finishMobileDate);
+				_self.gearDate.querySelector(".confirm_btn_cancel").addEventListener(hasTouch, closeMobileCalendar);
+				_self.gearDate.querySelector(".confirm_btn_finish").addEventListener(hasTouch, finishMobileDate);
+				_self.gearDate.querySelector(".lcalendar_gongli")
+                    .addEventListener(hasTouch, function(){convertTap('gongli')},false);
+				_self.gearDate.querySelector(".lcalendar_nongli")
+                    .addEventListener(hasTouch, function(){convertTap('nongli')},false);
 				var date_yy = _self.gearDate.querySelector(".date_yy");
 				var date_mm = _self.gearDate.querySelector(".date_mm");
 				var date_dd = _self.gearDate.querySelector(".date_dd");
@@ -314,7 +310,7 @@ window.ruiDatepicker = (function() {
 					var type=_self.type?0:1;
 					// 农历转公历前判断是否有闰月
 					var rmNum=LunarCal[val_yy].Intercalation?LunarCal[val_yy].Intercalation:0;
-					if(!_self.type && rmNum){
+					if(type && rmNum){
 						if(rmNum==(date_mm-1)){
 							date_mm=-(date_mm-1);
 						}else if(rmNum<(date_mm-1)){
@@ -421,7 +417,7 @@ window.ruiDatepicker = (function() {
 					date_yy.innerHTML = itemStr;
 					var top = Math.floor(parseFloat(date_yy.getAttribute('top')));
 					if (!isNaN(top)) {
-						top % 2 == 0 ? (top = top) : (top = top + 1);
+						if(top % 2 != 0) top++;
 						top > 8 && (top = 8);
 						var minTop = 8 - (passY - 1) * 2;
 						top < minTop && (top = minTop);
@@ -450,7 +446,7 @@ window.ruiDatepicker = (function() {
 					//得到月份的值
 					var mmVal = parseInt(date_mm.getAttribute("val"));
 					// 判断否有闰月
-					var rmNum=LunarCal[yyVal].Intercalation?LunarCal[yyVal].Intercalation:0;
+					var rmNum=LunarCal[yyVal].Intercalation||0;
 					if(rmNum && _self.type){
 						var maxM = 12;
 					}else{
@@ -598,27 +594,19 @@ window.ruiDatepicker = (function() {
 			function calcDays(year, month) {
 				// 农历查询数据
 				if(_self.type==1){
-					if(LunarCal[year].MonthDays[month]){
-						return 30;
-					}else{
-						return 29;
-					}
-				}else{
-					if (month == 1) {
-						year += _self.minY;
-						if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0 && year % 4000 != 0)) {
-							return 29;
-						} else {
-							return 28;
-						}
-					} else {
-						if (month == 3 || month == 5 || month == 8 || month == 10) {
-							return 30;
-						} else {
-							return 31;
-						}
-					}
+					return LunarCal[year].MonthDays[month] ? 30 : 29;
 				}
+                if (month == 1) {
+                    year += _self.minY;
+                    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0 && year % 4000 != 0)) {
+                        return 29;
+                    }
+                    return 28;
+                }
+                if (month == 3 || month == 5 || month == 8 || month == 10) {
+                    return 30;
+                }
+                return 31;
 			}
 			// 中文转换,type:rm闰月，mm月份，dd日期，num值
 			function getChinese(type,num){
@@ -748,14 +736,10 @@ window.ruiDatepicker = (function() {
 			}
 			/* 闰年, 返回 0 平年, 1 闰年 */
 			function GetLeap(year) {
-			    if (year % 400 == 0)
-			        return 1;
-			    else if (year % 100 == 0)
-			        return 0;
-			    else if (year % 4 == 0)
-			        return 1;
-			    else
-			        return 0;
+			    if (year % 400 == 0) return 1;
+			    if (year % 100 == 0) return 0;
+			    if (year % 4 == 0)   return 1;
+			    return 0;
 			}
 			// 农历对象数据处理
 			function tagLunarCal(d, i, w, k, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13) {
@@ -770,21 +754,17 @@ window.ruiDatepicker = (function() {
 				var e=e||event;
 				var dir=true;
 				if(e.wheelDelta){
-				    dir=e.wheelDelta>0?true:false; //ie和chrome
+				    dir=e.wheelDelta>0; //ie和chrome
 				}else{
-				    dir=e.detail<0?true:false;//firefox
+				    dir=e.detail<0;//firefox
 				}
 				//dir:true向上滚动，false向下滚动
 				var moveDir=dir?21:-21;
 				// 移动前
 				e.preventDefault();
 				var target = e.target;
-				while (true) {
-					if (!target.classList.contains("gear")) {
-						target = target.parentElement;
-					} else {
-						break
-					}
+				while (!target.classList.contains("gear")) {
+					target = target.parentElement;
 				}
 				clearInterval(target["int_" + target.id]);
 				target["old_" + target.id] = 0;
@@ -825,12 +805,8 @@ window.ruiDatepicker = (function() {
 				var target = e.target;
 				var targetPc=target;
 				var mousedownTip=false;//鼠标滑动锁
-				while (true) {
-					if (!target.classList.contains("gear")) {
-						target = target.parentElement;
-					} else {
-						break
-					}
+				while (!target.classList.contains("gear")) {
+					target = target.parentElement;
 				}
 				clearInterval(target["int_" + target.id]);
 				target["old_" + target.id] = e.screenY;
@@ -846,23 +822,18 @@ window.ruiDatepicker = (function() {
 					e = e || window.event;
 					e.preventDefault();
 					var target = targetPc;//鼠标兼容处理
-					while (true) {
-						if(!target) break;
-						if (!target.classList.contains("gear")) {
-							target = target.parentElement;
-						} else {
-							break
-						}
+					while (target && !target.classList.contains("gear")) {
+						target = target.parentElement;
 					}
 					if(!target) return;
 					target["new_" + target.id] = e.screenY;
-					target["n_t_" + target.id] = (new Date()).getTime();
+					target["n_t_" + target.id] = new Date().getTime();
 					var f = (target["new_" + target.id] - target["old_" + target.id]) * 18 / 370;
 					target["pos_" + target.id] = target["o_d_" + target.id] + f;
-					target.style["transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
-					target.style["-webkit-transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
-					target.style["-moz-transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
-					target.style["-ms-transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
+					target.style["transform"] = 
+					target.style["-webkit-transform"] = 
+					target.style["-moz-transform"] = 
+					target.style["-ms-transform"] = 
 					target.style["-o-transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
 					target.setAttribute('top', target["pos_" + target.id] + 'em');
 				};
@@ -877,13 +848,8 @@ window.ruiDatepicker = (function() {
 	            	e = e || window.event;
 	                e.preventDefault();
 					var target = targetPc;//鼠标兼容处理
-					while (true) {
-						if(!target) break;
-						if (!target.classList.contains("gear")) {
-							target = target.parentElement;
-						} else {
-							break;
-						}
+					while (target && !target.classList.contains("gear")) {
+						target = target.parentElement;
 					}
 					if(!target) return;
 					var flag = (target["new_" + target.id] - target["old_" + target.id]) / (target["n_t_" + target.id] - target["o_t_" + target.id]);
@@ -909,16 +875,12 @@ window.ruiDatepicker = (function() {
 				e.preventDefault();
 				var target = e.target;
 				target['touchTip']=false;//滑动锁
-				while (true) {
-					if (!target.classList.contains("gear")) {
-						target = target.parentElement;
-					} else {
-						break
-					}
+				while (!target.classList.contains("gear")) {
+					target = target.parentElement;
 				}
 				clearInterval(target["int_" + target.id]);
 				target["old_" + target.id] = e.targetTouches[0].screenY;
-				target["o_t_" + target.id] = (new Date()).getTime();
+				target["o_t_" + target.id] = new Date().getTime();
 				var top = target.getAttribute('top');
 				if (top) {
 					target["o_d_" + target.id] = parseFloat(top.replace(/em/g, ""));
@@ -931,21 +893,17 @@ window.ruiDatepicker = (function() {
 				e.preventDefault();
 				var target = e.target;
 				target['touchTip']=true;//滑动锁
-				while (true) {
-					if (!target.classList.contains("gear")) {
-						target = target.parentElement;
-					} else {
-						break
-					}
+				while (!target.classList.contains("gear")) {
+					target = target.parentElement;
 				}
 				target["new_" + target.id] = e.targetTouches[0].screenY;
 				target["n_t_" + target.id] = (new Date()).getTime();
 				var f = (target["new_" + target.id] - target["old_" + target.id]) * 18 / 370;
 				target["pos_" + target.id] = target["o_d_" + target.id] + f;
-				target.style["transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
-				target.style["-webkit-transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
-				target.style["-moz-transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
-				target.style["-ms-transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
+				target.style["transform"] = 
+				target.style["-webkit-transform"] = 
+				target.style["-moz-transform"] = 
+				target.style["-ms-transform"] = 
 				target.style["-o-transform"] = 'translate(0,' + target["pos_" + target.id] + 'em)';
 				target.setAttribute('top', target["pos_" + target.id] + 'em');
 			}
@@ -954,12 +912,8 @@ window.ruiDatepicker = (function() {
 				e.preventDefault();
 				var target = e.target;
 				if(!target['touchTip']) return false;
-				while (true) {
-					if (!target.classList.contains("gear")) {
-						target = target.parentElement;
-					} else {
-						break;
-					}
+				while (!target.classList.contains("gear")) {
+					target = target.parentElement;
 				}
 				var flag = (target["new_" + target.id] - target["old_" + target.id]) / (target["n_t_" + target.id] - target["o_t_" + target.id]);
 				if (Math.abs(flag) <= 0.2) {
@@ -1124,10 +1078,10 @@ window.ruiDatepicker = (function() {
 						default:
 					}
 					target["pos_" + target.id] = pos;
-					target.style["transform"] = 'translate(0,' + pos + 'em)';
-					target.style["-webkit-transform"] = 'translate(0,' + pos + 'em)';
-					target.style["-moz-transform"] = 'translate(0,' + pos + 'em)';
-					target.style["-ms-transform"] = 'translate(0,' + pos + 'em)';
+					target.style["transform"] = 
+					target.style["-webkit-transform"] = 
+					target.style["-moz-transform"] = 
+					target.style["-ms-transform"] = 
 					target.style["-o-transform"] = 'translate(0,' + pos + 'em)';
 					target.setAttribute('top', pos + 'em');
 					d++;
